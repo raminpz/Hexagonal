@@ -38,4 +38,6 @@ public class PersonaEntity {
     public Persona toDomainModel(){
         return new Persona(id,nombre,apellido,fechaNacimiento,genero);
     }
+
+
 }
