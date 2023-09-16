@@ -30,20 +30,23 @@ public class PersonaJpaRepositoryAdapter implements PersonaRepositoryPort {
     }
 
     @Override
-    public Persona updatePersona(Persona persona) {
-        PersonaEntity personaExistente = personaJpaRepository.findById(persona.getId()).orElse(null);
-        personaExistente.setNombre(persona.getNombre());
-        personaExistente.setApellido(persona.getApellido());
-        personaExistente.setFechaNacimiento(persona.getFechaNacimiento());
-        personaExistente.setGenero(persona.getGenero());
-
-        PersonaEntity newPersona = personaJpaRepository.save(personaExistente);
-
-        return newPersona.toDomainModel();
+    public Optional<Persona> update(Long id, Persona persona) {
+        if (personaJpaRepository.existsById(persona.getId())){
+            PersonaEntity personaEntity = PersonaEntity.fromDomainModel(persona);
+            PersonaEntity updatepersonaEntity = personaJpaRepository.save(personaEntity);
+            return Optional.of(updatepersonaEntity.toDomainModel());
+        }
+        return Optional.empty();
     }
 
     @Override
-    public void deletePersona(Long id) {
-        personaJpaRepository.deleteById(id);
+    public boolean deleteById(Long id) {
+        if (personaJpaRepository.existsById(id)){
+            personaJpaRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
+
+
 }

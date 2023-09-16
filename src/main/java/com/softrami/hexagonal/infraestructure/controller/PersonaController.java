@@ -31,13 +31,19 @@ public class PersonaController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/actualizarPersona")
-    public Persona actualizarPersona(@RequestBody Persona persona){
-        return personaService.actualizaPersona(persona);
+    @PutMapping("/{personaId}")
+    public ResponseEntity<Persona> updatepersona (@PathVariable Long personaId, @RequestBody Persona persona){
+        return personaService.updatePersona(personaId,persona)
+                .map(p -> new ResponseEntity<>(p,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping("/borrar/{id}")
-    public void borrarPersona(@PathVariable Long id){
-        personaService.eliminarPersona(id);
+    @DeleteMapping("/{personaId}")
+    public ResponseEntity<Void> deletePersonaById(@PathVariable Long personaId){
+        if (personaService.deletePersona(personaId)){
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

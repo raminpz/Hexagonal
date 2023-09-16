@@ -25,13 +25,13 @@ public class PersonaUseCaseImpl implements PersonaUseCase {
     }
 
     @Override
-    public Persona actualizaPersona(Persona persona) {
-        return personaRepositoryPort.updatePersona(persona);
+    public Optional<Persona> updatePersona(Long id, Persona persona) {
+        return personaRepositoryPort.update(id,persona);
     }
 
     @Override
-    public void eliminarPersona(Long id) {
-        personaRepositoryPort.deletePersona(id);
+    public boolean deletePersona(Long id) {
+        return personaRepositoryPort.deleteById(id);
     }
 
 
