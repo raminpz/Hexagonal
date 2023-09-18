@@ -64,14 +64,32 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
+                        <exclude>com/codigo/semana7/application/service/**</exclude>
+                        <exclude>com/codigo/semana7/domain/model/**</exclude>
+                        <exclude>com/codigo/semana7/domain/ports/**</exclude>
+                        <exclude>com/codigo/semana7/infrastructure/config/**</exclude>
+                        <exclude>com/codigo/semana7/infrastructure/controller/**</exclude>
+                        <exclude>com/codigo/semana7/infrastructure/entity/**</exclude>
+                        <exclude>com/codigo/semana7/EjemploDeHexagonalApplication.*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
