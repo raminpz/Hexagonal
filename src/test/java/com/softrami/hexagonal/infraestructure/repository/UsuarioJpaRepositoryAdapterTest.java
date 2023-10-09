@@ -92,10 +92,7 @@ class UsuarioJpaRepositoryAdapterTest {
     @Test
     void deleteByIdUsuarioEntity() {
         Long id = 1L;
-
         when(usuarioJpaRepository.existsById(id)).thenReturn(true);
-
         boolean usuarioAdapter = usuarioJpaRepositoryAdapter.deleteById(id);
-
     }
 }

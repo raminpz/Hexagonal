@@ -93,36 +93,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <excludes>
-                        <exclude>com/softrami/hexagonal/application/service/**</exclude>
-                        <exclude>com/softrami/hexagonal/domain/model/**</exclude>
-                        <exclude>com/softrami/hexagonal/domain/ports/**</exclude>
-                        <exclude>com/softrami/hexagonal/infrastructure/config/**</exclude>
-                        <exclude>com/softrami/hexagonal/infrastructure/controller/**</exclude>
-                        <exclude>com/softrami/hexagonal/infrastructure/entity/**</exclude>
-                        <exclude>com/softrami/hexagonal/DeHexagonalApplication.*</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
+
         </plugins>
     </build>
 
